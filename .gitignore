@@ -1,0 +1,25 @@
+# Build and install directories
+build/
+install/
+devel/
+.catkin_tools/
+
+# ROS specific
+*.pyc
+__pycache__/
+*.so
+*.a
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+*.log
+
+# Docker artifacts
+.docker/

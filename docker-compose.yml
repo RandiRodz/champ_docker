@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  champ:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: champ_ros2
+    image: champ:ros2-humble
+    
+    # Enable GUI support for RViz and Gazebo
+    environment:
+      - DISPLAY=${DISPLAY}
+      - QT_X11_NO_MITSHM=1
+    
+    # Mount X11 socket for GUI
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - ${HOME}/.Xauthority:/root/.Xauthority:rw
+      - ./src:/ws/src:rw
+      - ./install:/ws/install:rw
+      - ./build:/ws/build:rw
+    
+    # Allow Docker to access host network for communication
+    network_mode: host
+    
+    # Run in privileged mode for hardware access (if needed)
+    # privileged: true
+    
+    # Keep container running
+    stdin_open: true
+    tty: true
